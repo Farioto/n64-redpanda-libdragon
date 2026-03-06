@@ -1,0 +1,17 @@
+# Build artifacts
+build/
+filesystem/
+
+# Compiled objects and binaries
+*.o
+*.elf
+*.bin
+# *.z64 # uncomment this usually
+*.dfs
+*.sprite
+
+# Editor / OS junk
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
