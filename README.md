@@ -1,31 +1,36 @@
-# N64 Panda Demo 
-This README.md is a Work in Progress...
+# N64 Panda Demo
 
-A tiny Nintendo 64 homebrew project that displays a full‑screen panda image using [**libdragon**](https://github.com/DragonMinded/libdragon).
-This project is based on ideas from [Dillonb's n64-redpanda](https://github.com/Dillonb/n64-redpanda) and examples found in libdragon’s documentation.
-
-This is what you will see when you run the rom.
+This is a preview image of what you will see when you run the ROM:
 
 <img src="./assets/panda.jpg" width="640">
 
-It uses:
+---
 
-- **MSYS2 UCRT64** environment  
-- **ImageMagick** for JPG → PNG conversion  
-- **libdragon (preview branch)**  
-- **gcc-toolchain-mips64-win64-preview**  
-- A simple Makefile that converts assets and builds a ROM
+## Purpose
+- A tiny Nintendo 64 homebrew project that displays a full-screen panda image using libdragon.
+- Rewritten entirely using the libdragon engine and a simple asset pipeline.
+- This project is based on Dillonb's N64 Panda Demo which uses assembly:
+  https://github.com/Dillonb/n64-redpanda
+- Also based on examples found in libdragon’s documentation:
+  https://github.com/DragonMinded/libdragon
 
 ---
 
-## 📦 1. Install MSYS2 (UCRT64)
+## Requirements
+- MSYS2 (UCRT64 environment)
+- ImageMagick (UCRT64 build)
+- libdragon (preview branch)
+- gcc-toolchain-mips64-win64-preview
+- A Makefile that converts assets and builds the ROM
 
-Download MSYS2 from:  
+---
+
+## Install MSYS2 (UCRT64)
+
+Download MSYS2 from:
 https://www.msys2.org/
 
-Open the **ucrt64** shell:
-
-MSYS2 UCRT64
+Open the UCRT64 shell.
 
 Install required packages:
 
@@ -34,90 +39,134 @@ pacman -Syu
 pacman -S git make cmake python pkgconf \
           mingw-w64-ucrt-x86_64-gcc \
           mingw-w64-ucrt-x86_64-imagemagick
+```
 
-Note:  
+Note:
 We install the UCRT64 version of ImageMagick because the project is built inside the UCRT environment.
 
-Install ImageMagick (UCRT64)
-If you didn’t install it above:
+Install ImageMagick (UCRT64) if you didn’t install it above:
 
+```bash
 pacman -S mingw-w64-ucrt-x86_64-imagemagick
+```
 
-You can verify it works:
+Verify ImageMagick:
 
+&#96;&#96;&#96;bash
 magick -version
+&#96;&#96;&#96;
 
-🛠️ 3. Install the libdragon toolchain
-Download the gcc-toolchain-mips64-win64-preview ZIP from the libdragon releases page.
+---
+
+## Install the libdragon toolchain
+
+Download the **gcc-toolchain-mips64-win64** ZIP from the libdragon releases page:
+
+https://github.com/DragonMinded/libdragon/releases/tag/toolchain-continuous-prerelease
 
 Extract it somewhere permanent.
-In this example:
 
-/z/Tools/libdragon/V14.2.0-17896385267/gcc-toolchain-mips64-win64-preview
+The extracted folder is normally named:
+
+gcc-toolchain-mips64-win64
+
+To avoid interfering with an existing main-branch toolchain, rename it or extract as:
+
+gcc-toolchain-mips64-win64-preview
+
+Example final path:
+
+/c/Tools/libdragon/gcc-toolchain-mips64-win64-preview
 
 Inside that folder you should see:
 
-bin/
-include/
-lib/
-libexec/
-mips64-elf/
-share/
+- bin/
+- include/
+- lib/
+- libexec/
+- mips64-elf/
+- share/
 
-🌱 4. Set the N64_INST environment variable
-This tells libdragon where the toolchain lives.
+---
+
+## Set the N64_INST environment variable
 
 Temporary (per shell):
 
-export N64_INST="/z/Tools/libdragon/V14.2.0-17896385267/gcc-toolchain-mips64-win64-preview"
+```bash
+export N64_INST="/c/Tools/libdragon/gcc-toolchain-mips64-win64-preview"
+```
 
-Permanent (UCRT64)
+Permanent (UCRT64):
+
 Edit:
 
 ~/.bash_profile
 
 Add:
 
-export N64_INST="/z/Tools/libdragon/V14.2.0-17896385267/gcc-toolchain-mips64-win64-preview"
+```bash
+export N64_INST="/c/Tools/libdragon/gcc-toolchain-mips64-win64-preview"
+```
 
 Reload:
 
+```bash
 source ~/.bash_profile
+```
 
-🐉 5. Clone libdragon (preview branch)
-Choose a location for your source tree.
-Example:
+---
 
-/z/source/libdragon-preview
+## Clone libdragon (preview branch)
+
+Choose a location for your source tree. Example:
+
+/c/source/libdragon-preview
 
 Clone:
 
+```bash
 git clone --recursive https://github.com/DragonMinded/libdragon.git libdragon-preview
 cd libdragon-preview
 git checkout preview
+```
 
-🔧 6. Build and install libdragon
+---
+
+## Build and install libdragon
+
 Build tools:
 
+```bash
 cd tools
 make all
 make install
 cd ..
+```
 
 Build libdragon itself:
 
+```bash
 make all
 make install
+```
 
 Build examples (optional):
 
+```bash
 make examples
+```
 
 If everything is set correctly, the examples will compile and run in an emulator.
 
-🔄 7. Updating libdragon (preview)
+---
+
+## Updating libdragon (preview)
+
 To update:
-cd /z/source/libdragon-preview
+
+```bash
+cd /c/source/libdragon-preview
 git pull
 make clean
 cd tools
@@ -127,39 +176,32 @@ make install
 cd ..
 make all
 make install
+```
 
-🐉 8. Using the main branch instead
+---
+
+## Using the main branch instead
+
 Repeat the same steps, but:
 
-Clone without git checkout preview
+- Clone without `git checkout preview`
+- Use the non-preview toolchain folder
+- Build normally
 
-Use the non-preview toolchain folder
+---
 
-Build normally
+## Building this project
 
-🐼 9. Building this project
-Once libdragon is installed cd into this project directory and then run
+Once libdragon is installed, cd into this project directory and then run:
 
+```bash
 make
+```
 
 This will:
 
-Convert assets/panda.jpg → build/assets/panda.png
-
-Convert PNG → filesystem/panda.sprite
-
-Build the ROM: panda.z64
+- Convert assets/panda.jpg -> build/assets/panda.png
+- Convert PNG -> filesystem/panda.sprite
+- Build the ROM: panda.z64
 
 Run it in an emulator or on real hardware.
-
-
-
-
-
-
-
-
-
-
-
-
