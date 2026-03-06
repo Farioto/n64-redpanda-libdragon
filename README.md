@@ -1,7 +1,9 @@
-# N64 Panda Demo
+# N64 Panda Demo #
 
-A tiny Nintendo 64 homebrew project that displays a full‑screen panda image using **libdragon**.  
-This project is based on ideas from https://github.com/Dillonb/n64-redpanda and examples found in libdragon’s documentation.
+A tiny Nintendo 64 homebrew project that displays a full‑screen panda image using [**libdragon**](https://github.com/DragonMinded/libdragon).
+This project is based on ideas from [Dillonb's n64-redpanda](https://github.com/Dillonb/n64-redpanda) and examples found in libdragon’s documentation.
+
+This is a work in progress.
 
 It uses:
 
@@ -146,6 +148,7 @@ Convert PNG → filesystem/panda.sprite
 Build the ROM: panda.z64
 
 Run it in an emulator or on real hardware.
+
 
 
 
