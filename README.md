@@ -9,7 +9,7 @@ This is a preview image of what you will see when you run the ROM:
 ## Purpose
 - A tiny Nintendo 64 homebrew project that displays a full-screen panda image using libdragon.
 - Rewritten entirely using the libdragon engine and a simple asset pipeline.
-- This project is based on Dillonb's N64 Panda Demo which uses assembly:
+- Based on Dillonb's N64 Panda Demo which uses assembly:
   https://github.com/Dillonb/n64-redpanda
 - Also based on examples found in libdragon’s documentation:
   https://github.com/DragonMinded/libdragon
@@ -205,3 +205,4 @@ This will:
 - Build the ROM: panda.z64
 
 Run it in an emulator or on real hardware.
+
